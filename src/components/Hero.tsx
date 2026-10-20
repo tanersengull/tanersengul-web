@@ -22,22 +22,22 @@ export function Hero() {
             className="lg:col-span-7 flex flex-col items-start text-left"
           >
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800/90 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700/80 mb-6 shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-semibold bg-neutral-100 dark:bg-neutral-800/90 text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700/80 mb-6 shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-neutral-900 dark:bg-white animate-pulse" />
               <span>{personalInfo.title}</span>
             </div>
 
             {/* Headline: Dengeli & Şık Boyutta, Farklı Fontlu TANER ŞENGÜL */}
-            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 dark:text-white leading-[1.08] mb-4 uppercase drop-shadow-2xs">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-950 dark:text-white leading-[1.08] mb-4 uppercase drop-shadow-2xs">
               TANER ŞENGÜL
             </h1>
 
             {/* Role Subtitle */}
-            <p className="text-base sm:text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-4 tracking-tight">
+            <p className="text-lg sm:text-xl font-bold text-neutral-950 dark:text-neutral-100 mb-4 tracking-tight">
               {personalInfo.title}
             </p>
 
-            <p className="text-sm sm:text-base text-neutral-800 dark:text-neutral-300 leading-relaxed mb-8 max-w-xl">
+            <p className="text-base sm:text-[17px] font-medium text-neutral-800 dark:text-neutral-200 leading-relaxed mb-8 max-w-xl">
               {personalInfo.heroSubtitle}
             </p>
 
@@ -46,7 +46,7 @@ export function Hero() {
               {personalInfo.interests.map((interest, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 dark:bg-neutral-800/80 text-neutral-800 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/70 hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors"
+                  className="px-3 py-1 rounded-full text-xs sm:text-[13px] font-semibold bg-neutral-100 dark:bg-neutral-800/80 text-neutral-900 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700/70 hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors"
                 >
                   {interest}
                 </span>

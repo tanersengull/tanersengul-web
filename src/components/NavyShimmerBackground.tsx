@@ -69,9 +69,9 @@ export function NavyShimmerBackground() {
         }}
       />
 
-      {/* 2. Sık, Kıvrımlı Dalgalı Hatlar (Hem Açık Hem Koyu Modda Belirgin ve Etkileyici) */}
+      {/* 2. Sık, Kıvrımlı Dalgalı Hatlar (Beyaz modda okunaklılığı bozmayan yumuşak safir, koyu modda derin lacivert) */}
       <svg
-        className="absolute inset-0 w-full h-full opacity-70 dark:opacity-90 transition-opacity duration-300 overflow-hidden [contain:paint]"
+        className="absolute inset-0 w-full h-full opacity-20 dark:opacity-85 transition-opacity duration-300 overflow-hidden [contain:paint]"
         style={{
           maskImage: "linear-gradient(to bottom, transparent 0px, transparent 65px, black 115px)",
           WebkitMaskImage: "linear-gradient(to bottom, transparent 0px, transparent 65px, black 115px)",

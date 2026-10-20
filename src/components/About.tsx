@@ -64,7 +64,7 @@ export function About() {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-950 dark:text-white tracking-tight">
             Elektronikten Mobil Yazılıma, Fikirden Üretime
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-neutral-700 dark:text-neutral-300 max-w-xl">
+          <p className="mt-3 text-base sm:text-lg font-medium text-neutral-800 dark:text-neutral-200 max-w-xl">
             10 Ekim 1998 İstanbul doğumluyum. Elektronik altyapısı, yazılım merakı ve üretme heyecanı.
           </p>
         </motion.div>
@@ -100,11 +100,11 @@ export function About() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-7 flex flex-col justify-center"
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-neutral-950 dark:text-white mb-4 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-950 dark:text-white mb-4 tracking-tight">
               Yazılım Tutkusu, Fikirler &amp; İlgi Alanlarım
             </h3>
 
-            <div className="space-y-4 text-neutral-800 dark:text-neutral-300 text-sm sm:text-base leading-relaxed mb-8">
+            <div className="space-y-4 text-neutral-900 dark:text-neutral-200 text-base sm:text-[17px] font-normal leading-relaxed mb-8">
               {personalInfo.about.map((paragraph, idx) => (
                 <p key={idx}>{paragraph}</p>
               ))}
@@ -173,7 +173,7 @@ export function About() {
                     <h4 className="text-base font-bold text-neutral-900 dark:text-white mb-2 tracking-tight">
                       {pillar.title}
                     </h4>
-                    <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    <p className="text-sm font-normal text-neutral-700 dark:text-neutral-300 leading-relaxed">
                       {pillar.description}
                     </p>
                   </div>

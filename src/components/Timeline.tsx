@@ -88,81 +88,93 @@ function StackedCardItem({
     >
       <TiltCard
         maxTilt={3}
-        className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#121217] border border-neutral-200/80 dark:border-neutral-800/80 shadow-md sm:shadow-lg dark:shadow-[0_4px_20px_rgba(0,0,0,0.45)] sm:dark:shadow-[0_10px_35px_rgba(0,0,0,0.65)] hover:border-blue-700/50 transition-colors duration-200"
+        className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#121217] border border-neutral-300 dark:border-neutral-800 shadow-md sm:shadow-lg dark:shadow-[0_4px_20px_rgba(0,0,0,0.45)] sm:dark:shadow-[0_10px_35px_rgba(0,0,0,0.65)] hover:border-blue-700/50 transition-colors duration-200"
       >
-        {/* Daima Görünen Kademe Başlık Şeridi (Üstteki kartın altında kalan kısım) */}
-        <div className="flex items-center justify-between gap-2 pb-2 mb-3">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 shrink-0" />
-            <span className="text-xs sm:text-sm font-bold text-neutral-950 dark:text-white truncate max-w-[200px] sm:max-w-xs">
-              {item.company}
-            </span>
-          </div>
+        <TimelineCardContent item={item} />
+      </TiltCard>
+    </motion.div>
+  );
+}
 
-          <div className="flex items-center gap-2 shrink-0">
-            <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${
-                isWork
-                  ? "bg-blue-50 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60"
-                  : "bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60"
-              }`}
-            >
-              {isWork ? <Briefcase className="w-3 h-3" /> : <GraduationCap className="w-3 h-3" />}
-              <span>{isWork ? "İş Deneyimi" : "Eğitim"}</span>
-            </span>
-
-            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-mono text-neutral-500">
-              <Calendar className="w-3 h-3" />
-              {item.period}
-            </span>
-          </div>
-        </div>
-
-        {/* Role & Period (Mobile) */}
-        <div className="flex items-baseline justify-between gap-2 mb-1">
-          <h3 className="text-lg sm:text-xl font-bold text-neutral-950 dark:text-white tracking-tight">
-            {item.role}
-          </h3>
-          <span className="sm:hidden text-[10px] font-mono text-neutral-500 shrink-0">
-            {item.period}
+/**
+ * Reusable Card Content for both Mobile CSS Sticky and Desktop Framer Motion
+ */
+function TimelineCardContent({ item }: { item: Experience }) {
+  const isWork = item.type === "experience";
+  return (
+    <>
+      {/* Daima Görünen Kademe Başlık Şeridi */}
+      <div className="flex items-center justify-between gap-2 pb-2 mb-3">
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-400 shrink-0" />
+          <span className="text-sm sm:text-base font-bold text-neutral-950 dark:text-white truncate max-w-[200px] sm:max-w-xs">
+            {item.company}
           </span>
         </div>
 
-        {/* Short Description */}
-        <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed mb-3 line-clamp-2">
-          {item.description}
-        </p>
+        <div className="flex items-center gap-2 shrink-0">
+          <span
+            className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${
+              isWork
+                ? "bg-blue-50 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60"
+                : "bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60"
+            }`}
+          >
+            {isWork ? <Briefcase className="w-3 h-3" /> : <GraduationCap className="w-3 h-3" />}
+            <span>{isWork ? "İş Deneyimi" : "Eğitim"}</span>
+          </span>
 
-        {/* Highlights */}
-        {item.highlights && item.highlights.length > 0 && (
-          <ul className="space-y-1 mb-3">
-            {item.highlights.slice(0, 2).map((highlight, idx) => (
-              <li
-                key={idx}
-                className="flex items-start gap-1.5 text-xs text-neutral-700 dark:text-neutral-300"
-              >
-                <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
-                <span className="line-clamp-1">{highlight}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+          <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-mono font-medium text-neutral-500">
+            <Calendar className="w-3 h-3" />
+            {item.period}
+          </span>
+        </div>
+      </div>
 
-        {/* Tech Chips */}
-        {item.technologies && (
-          <div className="flex flex-wrap gap-1.5 pt-2.5 border-t border-neutral-200/80 dark:border-neutral-800/80">
-            {item.technologies.map((tech, i) => (
-              <span
-                key={i}
-                className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/80"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        )}
-      </TiltCard>
-    </motion.div>
+      {/* Role & Period (Mobile) */}
+      <div className="flex items-baseline justify-between gap-2 mb-1.5">
+        <h3 className="text-lg sm:text-xl font-bold text-neutral-950 dark:text-white tracking-tight">
+          {item.role}
+        </h3>
+        <span className="sm:hidden text-[11px] font-mono font-medium text-neutral-500 shrink-0">
+          {item.period}
+        </span>
+      </div>
+
+      {/* Short Description */}
+      <p className="text-[13px] sm:text-sm font-normal text-neutral-800 dark:text-neutral-300 leading-relaxed mb-3 line-clamp-2">
+        {item.description}
+      </p>
+
+      {/* Highlights */}
+      {item.highlights && item.highlights.length > 0 && (
+        <ul className="space-y-1 mb-3">
+          {item.highlights.slice(0, 2).map((highlight, idx) => (
+            <li
+              key={idx}
+              className="flex items-start gap-1.5 text-xs sm:text-[13px] font-normal text-neutral-800 dark:text-neutral-300"
+            >
+              <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
+              <span className="line-clamp-1">{highlight}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Tech Chips */}
+      {item.technologies && (
+        <div className="flex flex-wrap gap-1.5 pt-2.5 border-t border-neutral-200/80 dark:border-neutral-800/80">
+          {item.technologies.map((tech, i) => (
+            <span
+              key={i}
+              className="px-2 py-0.5 rounded-md text-[11px] font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-200/80 dark:border-neutral-700/80"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
@@ -248,83 +260,112 @@ export function Timeline() {
           </div>
         </div>
       ) : isStackActive ? (
-        /* Pinned Scroll-Driven Kademe Kademe Katman Sahnesi */
-        <div
-          ref={containerRef}
-          style={{ height: pinnedHeight }}
-          className="relative"
-        >
-          {/* Ekran Ortasında Kilitli Pinned Sahne (Mobil donanım hızlandırmalı) */}
-          <div className="sticky top-14 md:top-18 min-h-[calc(100dvh-3.5rem)] flex flex-col justify-between py-2 sm:py-4 max-w-4xl mx-auto px-4 sm:px-6 overflow-visible sm:overflow-clip">
-            
-            {/* Header & Filtre Sekmeleri */}
-            <div>
-              <SectionHeader filter={filter} onTabChange={handleTabChange} filterTabs={filterTabs} />
-              
-              {/* Kademe Durum Bilgisi */}
-              <div className="flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 px-2 mt-3 mb-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold uppercase tracking-wider text-[11px]">Kademeli Görünüm</span>
-                  <span className="px-2 py-0.5 rounded-md bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 font-mono text-[10px]">
-                    {filteredItems.length} Kayıt
-                  </span>
-                </div>
-                <div className="flex items-center gap-1 text-[11px] text-blue-600 dark:text-blue-400 font-medium">
-                  <span>Kaydırdıkça kademe kademe basamaklanır</span>
-                  <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
-                </div>
+        <>
+          {/* Mobil Görünüm: Saf Native GPU CSS Sticky Stepped Stack (Sıfır JS Scroll Olayı, 120 FPS Yağ Gibi Akıcı) */}
+          <div className="md:hidden py-14 px-4 max-w-xl mx-auto">
+            <SectionHeader filter={filter} onTabChange={handleTabChange} filterTabs={filterTabs} />
+
+            <div className="flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 px-2 mt-4 mb-5">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold uppercase tracking-wider text-[11px]">Kademeli Akış</span>
+                <span className="px-2 py-0.5 rounded-md bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 font-mono text-[10px]">
+                  {filteredItems.length} Kayıt
+                </span>
+              </div>
+              <div className="flex items-center gap-1 text-[11px] text-blue-600 dark:text-blue-400 font-medium">
+                <span>Aşağı kaydırın</span>
+                <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
               </div>
             </div>
 
-            {/* Kademe Kademe Kart Sahnesi */}
-            <div
-              className="relative w-full max-w-3xl mx-auto my-auto"
-              style={{ height: `${maxStackHeight}px` }}
-            >
+            <div className="flex flex-col gap-6 pb-16">
               {filteredItems.map((item, index) => (
-                <StackedCardItem
-                  key={item.id}
-                  item={item}
-                  index={index}
-                  total={filteredItems.length}
-                  progress={scrollYProgress}
-                  stepOffset={stepOffset}
-                />
-              ))}
-            </div>
-
-            {/* Alt Nokta İlerleme Çubuğu */}
-            <div className="flex items-center justify-center gap-1.5 py-1">
-              {filteredItems.map((_, i) => (
                 <div
-                  key={i}
-                  className="w-7 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 transition-all duration-300"
-                />
+                  key={item.id}
+                  style={{
+                    top: `calc(4.75rem + ${index * 38}px)`,
+                    zIndex: 10 + index,
+                  }}
+                  className="sticky"
+                >
+                  <div className="p-5 rounded-3xl bg-white dark:bg-[#121217] border border-neutral-300 dark:border-neutral-800 shadow-md dark:shadow-[0_8px_25px_rgba(0,0,0,0.6)]">
+                    <TimelineCardContent item={item} />
+                  </div>
+                </div>
               ))}
             </div>
-
           </div>
-        </div>
+
+          {/* Masaüstü Görünüm: Pinned Scroll-Driven Kademe Kademe Katman Sahnesi */}
+          <div
+            ref={containerRef}
+            style={{ height: pinnedHeight }}
+            className="hidden md:block relative"
+          >
+            {/* Ekran Ortasında Kilitli Pinned Sahne */}
+            <div className="sticky top-18 min-h-[calc(100dvh-3.5rem)] flex flex-col justify-between py-4 max-w-4xl mx-auto px-6 overflow-clip">
+              
+              {/* Header & Filtre Sekmeleri */}
+              <div>
+                <SectionHeader filter={filter} onTabChange={handleTabChange} filterTabs={filterTabs} />
+                
+                {/* Kademe Durum Bilgisi */}
+                <div className="flex items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 px-2 mt-3 mb-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold uppercase tracking-wider text-[11px]">Kademeli Görünüm</span>
+                    <span className="px-2 py-0.5 rounded-md bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 font-mono text-[10px]">
+                      {filteredItems.length} Kayıt
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 text-[11px] text-blue-600 dark:text-blue-400 font-medium">
+                    <span>Kaydırdıkça kademe kademe basamaklanır</span>
+                    <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Kademe Kademe Kart Sahnesi */}
+              <div
+                className="relative w-full max-w-3xl mx-auto my-auto"
+                style={{ height: `${maxStackHeight}px` }}
+              >
+                {filteredItems.map((item, index) => (
+                  <StackedCardItem
+                    key={item.id}
+                    item={item}
+                    index={index}
+                    total={filteredItems.length}
+                    progress={scrollYProgress}
+                    stepOffset={stepOffset}
+                  />
+                ))}
+              </div>
+
+              {/* Alt Nokta İlerleme Çubuğu */}
+              <div className="flex items-center justify-center gap-1.5 py-1">
+                {filteredItems.map((_, i) => (
+                  <div
+                    key={i}
+                    className="w-7 h-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 transition-all duration-300"
+                  />
+                ))}
+              </div>
+
+            </div>
+          </div>
+        </>
       ) : (
         /* Tek Elemanlı Görünüm */
         <div className="py-20 md:py-28 max-w-4xl mx-auto px-4 sm:px-6">
           <SectionHeader filter={filter} onTabChange={handleTabChange} filterTabs={filterTabs} />
           <div className="max-w-3xl mx-auto mt-8">
-            {filteredItems.map((item, index) => (
+            {filteredItems.map((item) => (
               <div key={item.id} className="relative">
                 <TiltCard
                   maxTilt={4}
                   className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#121217] border border-neutral-300 dark:border-neutral-700/80 shadow-md"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60">
-                      Eğitim &amp; Akademi
-                    </span>
-                    <span className="text-xs text-neutral-500">{item.period}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-neutral-950 dark:text-white">{item.role}</h3>
-                  <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2">{item.company}</p>
-                  <p className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">{item.description}</p>
+                  <TimelineCardContent item={item} />
                 </TiltCard>
               </div>
             ))}

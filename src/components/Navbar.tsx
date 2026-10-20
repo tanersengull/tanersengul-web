@@ -97,17 +97,27 @@ export function Navbar() {
         {/* Actions (Theme Switch + Mobile Toggle) */}
         <div className="flex items-center gap-2">
 
-          {/* Theme Toggle (Pure B&W Sun / Moon) */}
+          {/* iOS-Style Sliding Switch (Aç/Kapa Yuvarlak Kaydırmalı Buton) */}
           <button
             onClick={toggleTheme}
-            aria-label="Temayı değiştir"
-            className="w-9 h-9 rounded-lg flex items-center justify-center bg-neutral-100 dark:bg-neutral-800/80 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+            type="button"
+            role="switch"
+            aria-checked={resolvedTheme === "dark"}
+            aria-label="Temayı değiştir (Açık/Koyu Mod)"
+            className="group relative inline-flex h-7 w-[52px] shrink-0 cursor-pointer items-center rounded-full bg-neutral-200 dark:bg-neutral-800 p-0.5 border border-neutral-300 dark:border-neutral-700 transition-colors duration-300 focus:outline-hidden shadow-inner"
           >
-            {resolvedTheme === "dark" ? (
-              <Sun className="w-4 h-4 text-white" />
-            ) : (
-              <Moon className="w-4 h-4 text-neutral-900" />
-            )}
+            {/* Sağa / Sola Kayar Yuvarlak Buton (Sliding Round Thumb) */}
+            <span
+              className={`pointer-events-none flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-neutral-900 shadow-md transform transition-transform duration-300 ease-out ${
+                resolvedTheme === "dark" ? "translate-x-[24px]" : "translate-x-0"
+              }`}
+            >
+              {resolvedTheme === "dark" ? (
+                <Moon className="w-3.5 h-3.5 text-blue-400" />
+              ) : (
+                <Sun className="w-3.5 h-3.5 text-amber-500" />
+              )}
+            </span>
           </button>
 
           {/* Mobile Menu Trigger */}
