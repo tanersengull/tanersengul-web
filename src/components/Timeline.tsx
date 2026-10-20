@@ -56,11 +56,15 @@ function StackedCardItem({
       };
     }
 
-    const enterStart = (index - 1) * stepSize + 0.02;
-    const enterEnd = index * stepSize - 0.02;
+    const enterStart = (index - 1) * stepSize + 0.01;
+    const enterEnd = index * stepSize - 0.01;
+
+    // Mobilde devasa piksel sıçramaları (520px) yerine pürüzsüz 150px süzülme mesafesi
+    const travelDistance = 150;
+    const startY = targetRestY + travelDistance;
 
     const inputs = [0.0, enterStart, enterEnd, 1.0];
-    const yVals = [520, 520, targetRestY, targetRestY];
+    const yVals = [startY, startY, targetRestY, targetRestY];
     const opacityVals = [0.0, 0.0, 1.0, 1.0];
 
     return {
@@ -80,11 +84,11 @@ function StackedCardItem({
         opacity,
         zIndex: 10 + index,
       }}
-      className="absolute inset-x-0 top-0 will-change-transform"
+      className="absolute inset-x-0 top-0 will-change-transform [transform:translate3d(0,0,0)] [backface-visibility:hidden]"
     >
       <TiltCard
         maxTilt={3}
-        className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#121217] border border-neutral-200/80 dark:border-neutral-800/80 shadow-lg dark:shadow-[0_10px_35px_rgba(0,0,0,0.65)] hover:border-blue-700/50 transition-colors duration-200"
+        className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-[#121217] border border-neutral-200/80 dark:border-neutral-800/80 shadow-md sm:shadow-lg dark:shadow-[0_4px_20px_rgba(0,0,0,0.45)] sm:dark:shadow-[0_10px_35px_rgba(0,0,0,0.65)] hover:border-blue-700/50 transition-colors duration-200"
       >
         {/* Daima Görünen Kademe Başlık Şeridi (Üstteki kartın altında kalan kısım) */}
         <div className="flex items-center justify-between gap-2 pb-2 mb-3">
@@ -209,7 +213,7 @@ export function Timeline() {
   // Kart sayısına ve ekrana göre kademe aralığı (mobil ve masaüstünde mükemmel orantı)
   const stepOffset = filteredItems.length <= 3 ? 46 : filteredItems.length <= 4 ? 40 : 36;
   const maxStackHeight = (filteredItems.length - 1) * stepOffset + 300;
-  const pinnedHeight = `${filteredItems.length * 75 + 25}vh`;
+  const pinnedHeight = `${filteredItems.length * 55 + 20}vh`;
 
   return (
     <section id="timeline" className="relative">
@@ -250,8 +254,8 @@ export function Timeline() {
           style={{ height: pinnedHeight }}
           className="relative"
         >
-          {/* Ekran Ortasında Kilitli Pinned Sahne (Mobil dvh uyumlu) */}
-          <div className="sticky top-14 md:top-18 min-h-[calc(100dvh-3.5rem)] flex flex-col justify-between py-2 sm:py-4 max-w-4xl mx-auto px-4 sm:px-6 overflow-hidden">
+          {/* Ekran Ortasında Kilitli Pinned Sahne (Mobil donanım hızlandırmalı) */}
+          <div className="sticky top-14 md:top-18 min-h-[calc(100dvh-3.5rem)] flex flex-col justify-between py-2 sm:py-4 max-w-4xl mx-auto px-4 sm:px-6 overflow-visible sm:overflow-clip">
             
             {/* Header & Filtre Sekmeleri */}
             <div>
