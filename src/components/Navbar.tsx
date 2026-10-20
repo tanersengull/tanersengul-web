@@ -7,8 +7,7 @@ import {
   Sun, 
   Moon, 
   Menu, 
-  X,
-  FileDown 
+  X
 } from "lucide-react";
 
 export function Navbar() {
@@ -95,20 +94,8 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Actions (CV Download + Theme Switch + Mobile Toggle) */}
+        {/* Actions (Theme Switch + Mobile Toggle) */}
         <div className="flex items-center gap-2">
-          {/* CV İndir Butonu (Madde 1) */}
-          <a
-            href="/Taner_Sengul_CV.pdf"
-            download="Taner_Sengul_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-white hover:bg-neutral-100 text-neutral-950 border border-neutral-300 dark:bg-[#18181b] dark:hover:bg-[#222226] dark:text-white dark:border-neutral-700 transition-colors shadow-2xs"
-            title="Özgeçmişimi İndir (PDF)"
-          >
-            <FileDown className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-            <span>CV</span>
-          </a>
 
           {/* Theme Toggle (Pure B&W Sun / Moon) */}
           <button
@@ -152,18 +139,6 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-
-            <a
-              href="/Taner_Sengul_CV.pdf"
-              download="Taner_Sengul_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-            >
-              <FileDown className="w-4 h-4" />
-              <span>Özgeçmişimi İndir (PDF)</span>
-            </a>
           </div>
         </div>
       )}

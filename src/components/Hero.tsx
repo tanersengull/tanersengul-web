@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { ArrowRight, Smartphone, Terminal, Sparkles, FileDown } from "lucide-react";
+import { ArrowRight, Smartphone, Terminal, Sparkles } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 import { TiltCard } from "./TiltCard";
 
@@ -53,7 +53,7 @@ export function Hero() {
               ))}
             </div>
 
-            {/* CTAs (Projeleri İncele + CV İndir) */}
+            {/* CTA Button */}
             <div className="flex flex-wrap items-center gap-3 mb-10 w-full sm:w-auto">
               <a
                 href="#projects"
@@ -61,17 +61,6 @@ export function Hero() {
               >
                 <span>Projelerimi İncele</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-
-              <a
-                href="/Taner_Sengul_CV.pdf"
-                download="Taner_Sengul_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold bg-white hover:bg-neutral-100 text-neutral-950 border border-neutral-300 dark:bg-[#18181b] dark:hover:bg-[#222226] dark:text-white dark:border-neutral-700 transition-all duration-200 shadow-xs hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <FileDown className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
-                <span className="tracking-tight text-neutral-950 dark:text-white">Özgeçmişimi İndir (CV)</span>
               </a>
             </div>
 
