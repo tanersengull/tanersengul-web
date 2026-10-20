@@ -59,13 +59,15 @@ export function TiltCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transform: isHovered
+          ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`
+          : undefined,
         transition: isHovered
           ? "transform 0.08s ease-out"
           : "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
-        transformStyle: "preserve-3d",
+        transformStyle: isHovered ? "preserve-3d" : undefined,
       }}
-      className={`relative will-change-transform ${className}`}
+      className={`relative ${isHovered ? "will-change-transform" : ""} ${className}`}
       {...props}
     >
       {children}

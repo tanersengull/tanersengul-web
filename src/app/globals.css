@@ -271,5 +271,28 @@ body {
   animation: wave-pulse-ambient-alt 10s ease-in-out infinite;
 }
 
+/* =========================================================================
+   Mobile Performance & Smooth 120fps/60fps Scroll Optimization
+   ========================================================================= */
+@media (max-width: 768px), (pointer: coarse) {
+  /* Pause heavy stroke-dashoffset infinite keyframe loops during mobile scroll */
+  .wave-beam-1,
+  .wave-beam-2,
+  .wave-beam-3,
+  .wave-beam-4,
+  .wave-beam-5,
+  .wave-motion-1,
+  .wave-motion-2 {
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* Optimized backdrop blur radius for mobile GPUs to avoid frame drops */
+  .glass-panel {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+}
+
 
 
